@@ -1,6 +1,6 @@
 {
   "name": "coffee-json-dsl-cfn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "coffee-json-dsl plugin to define DSL to generate AWS CloudFormation stack templates",
   "main": "src/coffee-json-dsl-cfn.js",
   "scripts": {
