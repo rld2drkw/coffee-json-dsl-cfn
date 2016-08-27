@@ -7,18 +7,19 @@ module.exports = function(options) {
   return {
     HOOK: {
       init: function(document) {
-        this[Conditions] = {};
-        this[ConditionNumber] = 0;
+        this[Conditions] = [];
       },
       finish: function(document) {
-        Object.assign(document.Conditions, this[Conditions]);
+        for(let index in this[Conditions]){
+          document.Conditions[`_Condition${index}_`] = this[Conditions][index];
+        }
       }
     },
     DSL: {
       registerCondition: function(condition){
-        let conditionName = `_Condition${this[ConditionNumber]++}_`;
-        this[Conditions][conditionName] = condition;
-        return conditionName;
+        const index = this[Conditions].length;
+        this[Conditions].push(condition);
+        return `_Condition${index}_`;
       },
       if: function(condition, thenValue, elseValue) {
         let conditionName = condition;
